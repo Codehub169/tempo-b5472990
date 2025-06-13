@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netra Jyoti Eye Clinic - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4D68; /* Deep Blue */
+            --secondary-color: #088395; /* Teal */
+            --accent-color: #F5A623; /* Gold/Orange */
+            --light-color: #F7FAFC; /* Very Light Gray */
+            --dark-color: #2C3E50; /* Dark Slate Blue */
+            --text-color: #34495E; /* Wet Asphalt */
+            --white-color: #FFFFFF;
+            --border-radius: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease;
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px; /* Base font size */
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            background-color: var(--white-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-secondary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 2rem; /* Increased gap */
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            position: relative;
+            transition: color var(--transition-speed);
+            padding: 0.5rem 0;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--secondary-color);
+            transition: width var(--transition-speed);
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--secondary-color);
+        }
+
+        .main-nav a:hover::after, .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            transition: all var(--transition-speed);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem; /* 12px 28px */
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: var(--font-secondary);
+            transition: all var(--transition-speed);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--white-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #e0951c; /* Darker accent */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .main-nav .btn-secondary {
+             padding: 0.6rem 1.2rem; /* Slightly smaller for nav */
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(10, 77, 104, 0.75), rgba(10, 77, 104, 0.75)), url('https://images.unsplash.com/photo-1579684385127-6ab18a5d7814?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            color: var(--white-color);
+            padding: 100px 0; /* Adjusted padding */
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: var(--font-secondary);
+            font-size: clamp(2.5rem, 5vw, 3.8rem); /* Responsive font size */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-light {
+            background-color: var(--light-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-secondary);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0.5rem auto 0;
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            text-align: center;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-family: var(--font-secondary);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* --- Why Choose Us Section --- */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px; /* Increased gap */
+            align-items: flex-start; /* Align items to top */
+        }
+        
+        .why-us-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .why-us-item .icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            flex-shrink: 0;
+            margin-top: 5px; /* Align icon better */
+        }
+        
+        .why-us-item h3 {
+            font-family: var(--font-secondary);
+            font-size: 1.3rem; /* Slightly larger */
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* --- CTA Section --- */
+        .cta-section {
+            background: var(--secondary-color);
+            color: var(--white-color);
+            padding: 70px 0;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-family: var(--font-secondary);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 70px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-secondary);
+            font-size: 1.3rem;
+            color: var(--white-color);
+            margin-bottom: 25px; /* More space */
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-col p, .footer-col ul {
+            list-style: none;
+            color: #bdc3c7; /* Lighter gray for footer text */
+            font-size: 0.95rem;
+        }
+        
+        .footer-col a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color var(--transition-speed), padding-left var(--transition-speed);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #4a627a; /* Slightly darker border */
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .main-nav {
+                position: absolute;
+                top: 100%; /* Position below header */
+                left: 0;
+                right: 0;
+                background-color: var(--white-color);
+                flex-direction: column;
+                text-align: center;
+                box-shadow: var(--shadow);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out; /* Smoother transition */
+            }
+
+            .main-nav.active {
+                max-height: 500px; /* Adjust as needed for items */
+                padding: 20px 0;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+            .services-grid, .why-us-grid, .footer-grid {
+                grid-template-columns: 1fr; /* Stack on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="logo">Netra Jyoti</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/doctors">Our Doctors</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/appointment" class="btn btn-secondary">Book Appointment</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container fade-in">
+                <h1>Vision for a Brighter Tomorrow</h1>
+                <p>Welcome to Netra Jyoti, where advanced eye care meets compassionate service. We are dedicated to protecting and enhancing your vision for life.</p>
+                <a href="/appointment" class="btn btn-primary">Book an Appointment</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Our Core Services</h2>
+                    <p>We offer a comprehensive range of eye care services, from routine check-ups to advanced surgical procedures, all under one roof.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card fade-in" data-delay="0.2s">
+                        <div class="icon">👁️</div>
+                        <h3>Comprehensive Eye Exams</h3>
+                        <p>A complete assessment of your vision and eye health, essential for maintaining clear sight and detecting potential issues early.</p>
+                    </div>
+                    <div class="service-card fade-in" data-delay="0.4s">
+                        <div class="icon">👓</div>
+                        <h3>LASIK & Refractive Surgery</h3>
+                        <p>Experience the freedom from glasses and contact lenses with our state-of-the-art bladeless laser vision correction procedures.</p>
+                    </div>
+                    <div class="service-card fade-in" data-delay="0.6s">
+                        <div class="icon">🌟</div>
+                        <h3>Cataract Surgery</h3>
+                        <p>Restore clear vision with our advanced micro-incision cataract surgery, offering a wide range of premium intraocular lenses.</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;" class="fade-in" data-delay="0.8s">
+                    <a href="/services" class="btn btn-secondary">View All Services</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>Why Choose Netra Jyoti?</h2>
+                    <p>Your vision is our priority. We combine expertise, technology, and a patient-first approach to deliver the highest standard of care.</p>
+                </div>
+                <div class="why-us-grid">
+                    <div class="why-us-item fade-in" data-delay="0.2s">
+                        <div class="icon">🔬</div>
+                        <div>
+                            <h3>Advanced Technology</h3>
+                            <p>We invest in the latest diagnostic and surgical equipment from around the world to ensure precise and safe treatments.</p>
+                        </div>
+                    </div>
+                    <div class="why-us-item fade-in" data-delay="0.4s">
+                        <div class="icon">👨‍⚕️</div>
+                        <div>
+                            <h3>Expert Medical Team</h3>
+                            <p>Our team of highly qualified and experienced ophthalmologists are leaders in their respective fields.</p>
+                        </div>
+                    </div>
+                    <div class="why-us-item fade-in" data-delay="0.6s">
+                        <div class="icon">❤️</div>
+                        <div>
+                            <h3>Patient-Centric Care</h3>
+                            <p>We believe in personalized care, ensuring every patient feels heard, comfortable, and confident in their treatment plan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container fade-in">
+                <h2>Ready to See the World More Clearly?</h2>
+                <p>Your journey to better vision starts here. Schedule a consultation with one of our experts today.</p>
+                <a href="/appointment" class="btn btn-primary">Request an Appointment Now</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Netra Jyoti</h4>
+                    <p>Netra Jyoti Eye Clinic is a premier eye care facility in India, committed to providing world-class eye care with a human touch.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/doctors">Our Doctors</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/appointment">Book Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><p>📍 123 Vision Avenue, Andheri (W), Mumbai, 400058</p></li>
+                        <li><p>📞 +91 98765 43210</p></li>
+                        <li><p>✉️ contact@netrajyoti.in</p></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Working Hours</h4>
+                    <ul>
+                        <li><p>Mon - Fri: 9:00 AM - 7:00 PM</p></li>
+                        <li><p>Saturday: 9:00 AM - 4:00 PM</p></li>
+                        <li><p>Sunday: Closed</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Netra Jyoti Eye Clinic. All Rights Reserved. Designed with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+
+        // Close mobile nav if a link is clicked
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+
+        // Simple fade-in on scroll observer
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.15, // Trigger when 15% of the element is visible
+            rootMargin: "0px 0px -50px 0px" // Start loading a bit before it's fully in view
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+                // Apply animation delay if specified
+                entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+                entry.target.classList.add('appeared'); // Use a class to mark as appeared to avoid re-triggering
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+</body>
+</html>

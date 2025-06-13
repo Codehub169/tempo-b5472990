@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Netra Jyoti Eye Clinic</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #0A4D68;
+            --secondary-color: #088395;
+            --accent-color: #F5A623;
+            --light-color: #F7F7F7;
+            --dark-color: #2C3E50;
+            --text-color: #34495E;
+            --white-color: #FFFFFF;
+            --border-radius: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text-color); background-color: var(--white-color); line-height: 1.7; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Header & Navigation (Shared Styles) --- */
+        .main-header { position: sticky; top: 0; z-index: 1000; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); padding: 15px 0; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .main-nav ul { list-style: none; display: flex; gap: 30px; align-items: center;}
+        .main-nav a { text-decoration: none; color: var(--dark-color); font-weight: 500; position: relative; transition: color var(--transition-speed); }
+        .main-nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--secondary-color); transition: width var(--transition-speed); }
+        .main-nav a:hover, .main-nav a.active { color: var(--secondary-color); }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger .bar { width: 25px; height: 3px; background-color: var(--primary-color); border-radius: 5px; transition: all var(--transition-speed); }
+        .btn { display: inline-block; padding: 10px 25px; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; transition: all var(--transition-speed); border: none; cursor: pointer; font-size: 0.95rem;}
+        .btn-secondary { background-color: var(--secondary-color); color: var(--white-color); }
+        .btn-secondary:hover { background-color: var(--primary-color); transform: translateY(-2px); }
+
+        /* --- Page Header --- */
+        .page-header { background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0.6)), url('https://images.unsplash.com/photo-1587560699334-cc4262401233?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover; padding: 80px 0; text-align: center; color: var(--white-color); }
+        .page-header h1 { font-size: 3rem; font-weight: 700; }
+        .page-header p { font-size: 1.1rem; max-width: 600px; margin: 10px auto 0; font-weight: 300; }
+
+        /* --- Section Styling --- */
+        .section { padding: 80px 0; }
+        
+        /* --- Contact Grid --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-card {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card .icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .contact-card p, .contact-card a {
+            color: var(--text-color);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .contact-card a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Map and Hours --- */
+        .map-hours-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 80px;
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .map-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 450px;
+        }
+
+        .map-container iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hours-container {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            height: 100%; /* Make it same height as map if desired, or adjust */
+        }
+
+        .hours-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hours-container ul {
+            list-style: none;
+        }
+        
+        .hours-container li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hours-container li:last-child {
+            border-bottom: none;
+        }
+        
+        .hours-container li span:first-child {
+            font-weight: 600;
+        }
+
+        /* --- Footer (Shared Styles) --- */
+        .main-footer { background-color: var(--dark-color); color: var(--light-color); padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1.2rem; color: var(--white-color); margin-bottom: 20px; position: relative; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 40px; height: 2px; background-color: var(--accent-color); }
+        .footer-col p, .footer-col ul { list-style: none; color: #bdc3c7; }
+        .footer-col a { color: #bdc3c7; text-decoration: none; transition: color var(--transition-speed), padding-left var(--transition-speed); }
+        .footer-col a:hover { color: var(--accent-color); padding-left: 5px; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #4a627a; font-size: 0.9rem; color: #bdc3c7; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) { /* Adjust breakpoint for map/hours stacking */
+            .map-hours-grid {
+                 grid-template-columns: 1fr;
+            }
+            .hours-container {
+                margin-top: 30px; /* Add some space when stacked */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav {
+                position: absolute;
+                top: 72px; /* Header height */
+                left: 0;
+                right: 0;
+                background-color: var(--white-color);
+                flex-direction: column;
+                text-align: center;
+                box-shadow: var(--shadow);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height var(--transition-speed);
+            }
+
+            .main-nav.active {
+                max-height: 300px; /* Adjust as needed */
+                padding: 20px 0;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .page-header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="logo">Netra Jyoti</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/doctors">Our Doctors</a></li>
+                    <li><a href="/contact" class="active">Contact Us</a></li>
+                    <li><a href="/appointment" class="btn btn-secondary">Book Appointment</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container fade-in">
+                <h1>Get In Touch</h1>
+                <p>We are here to help. Reach out to us for appointments, inquiries, or any support you may need.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid fade-in">
+                    <div class="contact-card">
+                        <div class="icon">📍</div>
+                        <h3>Our Address</h3>
+                        <p>123 Vision Avenue, Andheri (W),<br>Mumbai, Maharashtra 400058,<br>India</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon">📞</div>
+                        <h3>Phone Lines</h3>
+                        <p>Appointment: <a href="tel:+919876543210">+91 98765 43210</a></p>
+                        <p>Emergency: <a href="tel:+919876543211">+91 98765 43211</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="icon">✉️</div>
+                        <h3>Email Us</h3>
+                        <p>General: <a href="mailto:contact@netrajyoti.in">contact@netrajyoti.in</a></p>
+                        <p>Feedback: <a href="mailto:feedback@netrajyoti.in">feedback@netrajyoti.in</a></p>
+                    </div>
+                </div>
+
+                <div class="map-hours-grid fade-in" style="animation-delay: 0.2s;">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.709979929827!2d72.8310907153691!3d19.07609008708764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="hours-container">
+                        <h3>Opening Hours</h3>
+                        <ul>
+                            <li><span>Monday</span><span>9:00 AM - 7:00 PM</span></li>
+                            <li><span>Tuesday</span><span>9:00 AM - 7:00 PM</span></li>
+                            <li><span>Wednesday</span><span>9:00 AM - 7:00 PM</span></li>
+                            <li><span>Thursday</span><span>9:00 AM - 7:00 PM</span></li>
+                            <li><span>Friday</span><span>9:00 AM - 7:00 PM</span></li>
+                            <li><span>Saturday</span><span>9:00 AM - 4:00 PM</span></li>
+                            <li><span>Sunday</span><span>Closed</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Netra Jyoti</h4>
+                    <p>Netra Jyoti Eye Clinic is a premier eye care facility in Mumbai, India, committed to providing world-class eye care with a human touch.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/doctors">Our Doctors</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><p>📍 123 Vision Avenue, Andheri (W), Mumbai, 400058</p></li>
+                        <li><p>📞 +91 98765 43210</p></li>
+                        <li><p>✉️ contact@netrajyoti.in</p></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Working Hours</h4>
+                    <ul>
+                        <li><p>Mon - Fri: 9:00 AM - 7:00 PM</p></li>
+                        <li><p>Saturday: 9:00 AM - 4:00 PM</p></li>
+                        <li><p>Sunday: Closed</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Netra Jyoti Eye Clinic. All Rights Reserved. Designed by AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+
+        // Simple fade-in on scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+                    entry.target.classList.add('in-view'); 
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+
+</body>
+</html>

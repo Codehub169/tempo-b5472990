@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors - Netra Jyoti Eye Clinic</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #0A4D68;
+            --secondary-color: #088395;
+            --accent-color: #F5A623;
+            --light-color: #F7F7F7;
+            --dark-color: #2C3E50;
+            --text-color: #34495E;
+            --white-color: #FFFFFF;
+            --border-radius: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text-color); background-color: var(--light-color); line-height: 1.7; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* --- Animations --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Header & Navigation (Shared Styles) --- */
+        .main-header { position: sticky; top: 0; z-index: 1000; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); padding: 15px 0; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .main-nav ul { list-style: none; display: flex; gap: 30px; align-items: center;}
+        .main-nav a { text-decoration: none; color: var(--dark-color); font-weight: 500; position: relative; transition: color var(--transition-speed); }
+        .main-nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--secondary-color); transition: width var(--transition-speed); }
+        .main-nav a:hover, .main-nav a.active { color: var(--secondary-color); }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger .bar { width: 25px; height: 3px; background-color: var(--primary-color); border-radius: 5px; transition: all var(--transition-speed); }
+        .btn { display: inline-block; padding: 10px 25px; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; transition: all var(--transition-speed); border: none; cursor: pointer; font-size: 0.95rem;}
+        .btn-secondary { background-color: var(--secondary-color); color: var(--white-color); }
+        .btn-secondary:hover { background-color: var(--primary-color); transform: translateY(-2px); }
+
+        /* --- Page Header --- */
+        .page-header { background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0.6)), url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover; padding: 80px 0; text-align: center; color: var(--white-color); }
+        .page-header h1 { font-size: 3rem; font-weight: 700; }
+        .page-header p { font-size: 1.1rem; max-width: 600px; margin: 10px auto 0; font-weight: 300; }
+
+        /* --- Section Styling --- */
+        .section { padding: 80px 0; }
+        
+        /* --- Doctors Grid --- */
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .doctor-card {
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .doctor-card .photo-wrapper {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform var(--transition-speed);
+        }
+        
+        .doctor-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .doctor-info {
+            padding: 25px;
+        }
+
+        .doctor-info h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .doctor-info .specialty {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .doctor-info p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- Footer (Shared Styles) --- */
+        .main-footer { background-color: var(--dark-color); color: var(--light-color); padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-size: 1.2rem; color: var(--white-color); margin-bottom: 20px; position: relative; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 40px; height: 2px; background-color: var(--accent-color); }
+        .footer-col p, .footer-col ul { list-style: none; color: #bdc3c7; }
+        .footer-col a { color: #bdc3c7; text-decoration: none; transition: color var(--transition-speed), padding-left var(--transition-speed); }
+        .footer-col a:hover { color: var(--accent-color); padding-left: 5px; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #4a627a; font-size: 0.9rem; color: #bdc3c7; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .main-nav {
+                position: absolute;
+                top: 72px; /* Header height */
+                left: 0;
+                right: 0;
+                background-color: var(--white-color);
+                flex-direction: column;
+                text-align: center;
+                box-shadow: var(--shadow);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height var(--transition-speed);
+            }
+
+            .main-nav.active {
+                max-height: 300px; /* Adjust as needed */
+                padding: 20px 0;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .page-header h1 { font-size: 2.2rem; }
+            .doctors-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="logo">Netra Jyoti</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/doctors" class="active">Our Doctors</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/appointment" class="btn btn-secondary">Book Appointment</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container fade-in">
+                <h1>Meet Our Expert Team</h1>
+                <p>A team of dedicated, experienced, and compassionate ophthalmologists committed to your eye health.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="doctors-grid">
+                    <div class="doctor-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="photo-wrapper">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070&auto=format&fit=crop" alt="Dr. Anjali Verma">
+                        </div>
+                        <div class="doctor-info">
+                            <h3>Dr. Anjali Verma</h3>
+                            <div class="specialty">Cataract & LASIK Specialist</div>
+                            <p>With over 15 years of experience, Dr. Verma is a pioneer in advanced cataract surgery and laser vision correction in India. She is known for her precision and patient-centric approach.</p>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="photo-wrapper">
+                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1887&auto=format&fit=crop" alt="Dr. Rohan Mehta">
+                        </div>
+                        <div class="doctor-info">
+                            <h3>Dr. Rohan Mehta</h3>
+                            <div class="specialty">Glaucoma & Retina Specialist</div>
+                            <p>Dr. Mehta is a leading expert in the management of complex retinal diseases and glaucoma. He is dedicated to using cutting-edge technology to preserve the vision of his patients.</p>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card fade-in" style="animation-delay: 0.6s;">
+                        <div class="photo-wrapper">
+                            <img src="https://images.unsplash.com/photo-1622253692010-33352da55e0d?q=80&w=2070&auto=format&fit=crop" alt="Dr. Priya Sharma">
+                        </div>
+                        <div class="doctor-info">
+                            <h3>Dr. Priya Sharma</h3>
+                            <div class="specialty">Pediatric Ophthalmology & Squint Specialist</div>
+                            <p>Dr. Sharma has a special gift for working with children. Her expertise in pediatric eye disorders and squint correction has helped countless children achieve healthy vision for life.</p>
+                        </div>
+                    </div>
+                     <div class="doctor-card fade-in" style="animation-delay: 0.8s;">
+                        <div class="photo-wrapper">
+                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1887&auto=format&fit=crop" alt="Dr. Vikram Singh">
+                        </div>
+                        <div class="doctor-info">
+                            <h3>Dr. Vikram Singh</h3>
+                            <div class="specialty">Cornea & Ocular Surface Specialist</div>
+                            <p>Dr. Singh specializes in corneal transplants, keratoconus management, and complex ocular surface diseases. He is committed to restoring sight through advanced corneal treatments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Netra Jyoti</h4>
+                    <p>Netra Jyoti Eye Clinic is a premier eye care facility in Mumbai, India, committed to providing world-class eye care with a human touch.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/doctors">Our Doctors</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><p>📍 123 Vision Avenue, Andheri (W), Mumbai, 400058</p></li>
+                        <li><p>📞 +91 98765 43210</p></li>
+                        <li><p>✉️ contact@netrajyoti.in</p></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Working Hours</h4>
+                    <ul>
+                        <li><p>Mon - Fri: 9:00 AM - 7:00 PM</p></li>
+                        <li><p>Saturday: 9:00 AM - 4:00 PM</p></li>
+                        <li><p>Sunday: Closed</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Netra Jyoti Eye Clinic. All Rights Reserved. Designed by AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+
+        // Simple fade-in on scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+            rootMargin: "0px 0px -50px 0px" // Start animation a bit before it's fully in view
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+                    entry.target.classList.add('in-view'); // A helper class if needed for more complex sequences
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+
+</body>
+</html>

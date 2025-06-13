@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Netra Jyoti Eye Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A4D68;
+            --secondary-color: #088395;
+            --accent-color: #F5A623;
+            --light-color: #F7FAFC;
+            --dark-color: #2C3E50;
+            --text-color: #34495E;
+            --white-color: #FFFFFF;
+            --border-radius: 8px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s ease;
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-primary); color: var(--text-color); background-color: var(--white-color); line-height: 1.7; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInAnimation 0.8s ease-out forwards; }
+        @keyframes fadeInAnimation { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Header & Navigation (Shared Styles from index.html) --- */
+        .main-header { position: sticky; top: 0; z-index: 1000; background-color: rgba(255, 255, 255, 0.97); backdrop-filter: blur(8px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); padding: 1rem 0; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-secondary); font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .main-nav ul { list-style: none; display: flex; align-items: center; gap: 2rem; }
+        .main-nav a { text-decoration: none; color: var(--dark-color); font-weight: 500; font-family: var(--font-secondary); font-size: 1rem; position: relative; transition: color var(--transition-speed); padding: 0.5rem 0; }
+        .main-nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: var(--secondary-color); transition: width var(--transition-speed); }
+        .main-nav a:hover, .main-nav a.active { color: var(--secondary-color); }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger .bar { width: 25px; height: 3px; background-color: var(--primary-color); border-radius: 5px; transition: all var(--transition-speed); }
+        .btn { display: inline-block; padding: 0.75rem 1.75rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; font-family: var(--font-secondary); transition: all var(--transition-speed); border: none; cursor: pointer; font-size: 1rem; }
+        .btn-secondary { background-color: var(--secondary-color); color: var(--white-color); }
+        .btn-secondary:hover { background-color: var(--primary-color); transform: translateY(-2px); }
+        .main-nav .btn-secondary { padding: 0.6rem 1.2rem; }
+
+        /* --- Page Header --- */
+        .page-header {
+            background: linear-gradient(rgba(44, 62, 80, 0.65), rgba(44, 62, 80, 0.65)), url('https://images.unsplash.com/photo-1554734867-bf3c00a49371?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 80px 0;
+            text-align: center;
+            color: var(--white-color);
+        }
+        .page-header h1 {
+            font-family: var(--font-secondary);
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            font-weight: 700;
+        }
+        .page-header p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            max-width: 600px;
+            margin: 10px auto 0;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* --- Section Styling --- */
+        .section { padding: 80px 0; }
+        .section-light { background-color: var(--light-color); }
+        
+        /* --- Detailed Services Grid --- */
+        .detailed-services-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column layout for detailed items */
+            gap: 50px; /* Increased gap */
+        }
+
+        .detailed-service-item {
+            display: flex;
+            gap: 40px;
+            background: var(--white-color);
+            padding: 40px; /* Increased padding */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            overflow: hidden; /* Ensure image hover effect is contained */
+        }
+        
+        .detailed-service-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Alternating layout for visual interest */
+        .detailed-service-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        .detailed-service-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .detailed-service-item .service-image {
+            width: 40%; /* Adjust width */
+            min-width: 280px; /* Minimum width for image */
+            height: auto; /* Auto height based on aspect ratio */
+            max-height: 300px; /* Max height for consistency */
+            flex-shrink: 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .detailed-service-item .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease-out; /* Smoother image zoom */
+        }
+        
+        .detailed-service-item:hover .service-image img {
+            transform: scale(1.08);
+        }
+
+        .service-content {
+            flex-grow: 1;
+        }
+
+        .service-content h3 {
+            font-family: var(--font-secondary);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .service-content ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+        
+        .service-content li {
+            margin-bottom: 10px;
+            padding-left: 25px; /* Space for custom bullet */
+            position: relative;
+            font-size: 0.95rem;
+        }
+        .service-content li::before {
+            content: "\2713"; /* Checkmark character */
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 1px;
+        }
+
+        /* --- CTA Section (Shared from index.html) --- */
+        .cta-section { background: var(--secondary-color); color: var(--white-color); padding: 70px 0; text-align: center; margin-top: 60px;}
+        .cta-section h2 { font-family: var(--font-secondary); font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 1rem; }
+        .cta-section p { margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.1rem; font-weight: 300; }
+        .btn-primary { background-color: var(--accent-color); color: var(--white-color); }
+        .btn-primary:hover { background-color: #e0951c; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4); }
+
+        /* --- Footer (Shared Styles from index.html) --- */
+        .main-footer { background-color: var(--dark-color); color: var(--light-color); padding: 70px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { font-family: var(--font-secondary); font-size: 1.3rem; color: var(--white-color); margin-bottom: 25px; position: relative; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 40px; height: 2px; background-color: var(--accent-color); }
+        .footer-col p, .footer-col ul { list-style: none; color: #bdc3c7; font-size: 0.95rem; }
+        .footer-col a { color: #bdc3c7; text-decoration: none; transition: color var(--transition-speed), padding-left var(--transition-speed); }
+        .footer-col a:hover { color: var(--accent-color); padding-left: 5px; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #4a627a; font-size: 0.9rem; color: #bdc3c7; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) { /* Adjust breakpoint for service items */
+            .detailed-service-item,
+            .detailed-service-item:nth-child(even) {
+                flex-direction: column;
+            }
+            .detailed-service-item .service-image {
+                width: 100%;
+                max-height: 250px; /* Adjust height for stacked layout */
+                margin-bottom: 25px;
+            }
+        }
+        @media (max-width: 768px) {
+            .main-nav { position: absolute; top: 100%; left: 0; right: 0; background-color: var(--white-color); flex-direction: column; text-align: center; box-shadow: var(--shadow); max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
+            .main-nav.active { max-height: 500px; padding: 20px 0; }
+            .main-nav ul { flex-direction: column; gap: 1.5rem; }
+            .hamburger { display: flex; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            .page-header { padding: 60px 0; }
+            .section { padding: 60px 0; }
+            .detailed-service-item { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="logo">Netra Jyoti</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services" class="active">Services</a></li>
+                    <li><a href="/doctors">Our Doctors</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/appointment" class="btn btn-secondary">Book Appointment</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container fade-in">
+                <h1>Our Eye Care Services</h1>
+                <p>A complete spectrum of services to cater to all your vision needs, delivered with expertise and care.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="detailed-services-grid">
+
+                    <div class="detailed-service-item fade-in" data-delay="0.1s">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="LASIK Surgery equipment">
+                        </div>
+                        <div class="service-content">
+                            <h3>LASIK & Refractive Surgery</h3>
+                            <p>Achieve clear vision without glasses or contact lenses. We offer the latest in bladeless, customized laser vision correction for a safer and more precise outcome, helping you see the world with new clarity.</p>
+                            <ul>
+                                <li>Custom Wavefront LASIK</li>
+                                <li>Contoura Vision & SMILE Procedures</li>
+                                <li>Implantable Collamer Lenses (ICL)</li>
+                                <li>Comprehensive Pre-operative Assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="detailed-service-item fade-in" data-delay="0.2s">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-16288***0029-715d901f43a5?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Illustration of eye with cataract">
+                        </div>
+                        <div class="service-content">
+                            <h3>Advanced Cataract Solutions</h3>
+                            <p>Regain vibrant, clear vision with our advanced cataract surgery. We use micro-incision phacoemulsification and offer a full range of premium intraocular lenses (IOLs) tailored to your lifestyle and visual needs.</p>
+                            <ul>
+                                <li>Robotic Femtosecond Laser-Assisted Cataract Surgery (FLACS)</li>
+                                <li>Monofocal, Toric & Multifocal Premium IOLs</li>
+                                <li>Quick, Safe, and Painless Procedure</li>
+                                <li>Personalized Lens Selection Counseling</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="detailed-service-item fade-in" data-delay="0.3s">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1584985474493-c1b8a53a5286?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Glaucoma eye check-up">
+                        </div>
+                        <div class="service-content">
+                            <h3>Glaucoma Diagnosis & Management</h3>
+                            <p>Early detection and expert management of glaucoma are key to preserving your sight. We provide comprehensive diagnostic services and advanced treatment options, from medication to minimally invasive surgery.</p>
+                            <ul>
+                                <li>Tonometry & Perimetry (Visual Field Testing)</li>
+                                <li>Optical Coherence Tomography (OCT) for Nerve Fiber Analysis</li>
+                                <li>Medical, Laser (SLT, LPI), and Surgical Treatments</li>
+                                <li>Minimally Invasive Glaucoma Surgery (MIGS)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="detailed-service-item fade-in" data-delay="0.4s">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Child having an eye exam">
+                        </div>
+                        <div class="service-content">
+                            <h3>Pediatric Ophthalmology</h3>
+                            <p>Specialized care for the youngest eyes. Our friendly environment and expert team ensure your child's vision develops healthily, addressing conditions like squint, lazy eye, and childhood refractive errors.</p>
+                            <ul>
+                                <li>Squint (Strabismus) Evaluation and Surgery</li>
+                                <li>Amblyopia (Lazy Eye) Therapy and Management</li>
+                                <li>Childhood Refractive Error Correction</li>
+                                <li>Congenital Eye Disorder Screening</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="detailed-service-item fade-in" data-delay="0.5s">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1604882355165-4UD0CB91fedf?q=80&w=1280&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Retina scan image">
+                        </div>
+                        <div class="service-content">
+                            <h3>Retina and Vitreous Services</h3>
+                            <p>Comprehensive care for conditions affecting the retina and vitreous, including diabetic retinopathy, macular degeneration, and retinal detachments, using state-of-the-art diagnostic and treatment modalities.</p>
+                            <ul>
+                                <li>Fundus Fluorescein Angiography (FFA) & OCT Angiography</li>
+                                <li>Intravitreal Injections (Anti-VEGF)</li>
+                                <li>Laser Photocoagulation for Retinal Disorders</li>
+                                <li>Vitreoretinal Surgery for Complex Cases</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section fade-in" data-delay="0.6s">
+            <div class="container">
+                <h2>Your Vision is Our Priority</h2>
+                <p>Don't wait to address your eye care needs. Schedule a consultation today and take the first step towards clearer, healthier vision.</p>
+                <a href="/appointment" class="btn btn-primary">Book Your Appointment</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>About Netra Jyoti</h4><p>Netra Jyoti Eye Clinic is a premier eye care facility in India, committed to providing world-class eye care with a human touch.</p></div>
+                <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li><a href="/doctors">Our Doctors</a></li><li><a href="/contact">Contact Us</a></li><li><a href="/appointment">Book Appointment</a></li></ul></div>
+                <div class="footer-col"><h4>Contact Info</h4><ul><li><p>📍 123 Vision Avenue, Andheri (W), Mumbai, 400058</p></li><li><p>📞 +91 98765 43210</p></li><li><p>✉️ contact@netrajyoti.in</p></li></ul></div>
+                <div class="footer-col"><h4>Working Hours</h4><ul><li><p>Mon - Fri: 9:00 AM - 7:00 PM</p></li><li><p>Saturday: 9:00 AM - 4:00 PM</p></li><li><p>Sunday: Closed</p></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Netra Jyoti Eye Clinic. All Rights Reserved. Designed with care.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -40px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.style.animationDelay = entry.target.dataset.delay || '0s';
+                entry.target.classList.add('appeared');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+
+</body>
+</html>
